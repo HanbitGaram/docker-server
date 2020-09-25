@@ -3,16 +3,15 @@ services:
     debian:
         build:
             context: "./configure/debian"
-            args:
-                WEB_USER_GID: 1000
-                WEB_USER_UID: 1000
-                WEB_USER_PASSWORD: www-user
         restart: "always"
         ports:
             - "80:80"
         environment:
             - "TZ=Asia/Seoul"
             - "DEBIAN_FRONTEND=noninteractive"
+            - "WEB_USER_GID=1000"
+            - "WEB_USER_UID=1000"
+            - "WEB_USER_PASSWORD=www-user"
         volumes:
             - "./sources/web:/Application:rw"
         depends_on:
