@@ -1,7 +1,7 @@
 version: "3.8"
 services:
     debian:
-        build: "configure/debian"
+        build: "./configure/debian"
         restart: "always"
         ports:
             - "80:8080"
@@ -13,7 +13,7 @@ services:
             - "DEBIAN_FRONTEND=noninteractive"
         depends_on:
             - "mariadb"
-    mysqli:
+    mariadb:
         image: "mariadb:latest"
         ports:
             - "3306:3306"
