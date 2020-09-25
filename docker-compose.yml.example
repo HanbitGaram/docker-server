@@ -3,6 +3,10 @@ services:
     debian:
         build:
             context: "./configure/debian"
+            args:
+                WEB_USER_GID: 1000
+                WEB_USER_UID: 1000
+                WEB_USER_PASSWORD: www-user
         restart: "always"
         ports:
             - "80:80"
