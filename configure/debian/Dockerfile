@@ -28,12 +28,13 @@ RUN apt-get -y update \
 && adduser --disabled-password --gecos '' www-user \
 && apt-get install -y tzdata \
 && ln -fs /usr/share/zoneinfo/Asia/Seoul /etc/localtime \
-&& dpkg-reconfigure --frontend noninteractive tzdata
+&& dpkg-reconfigure --frontend noninteractive tzdata \
+&& service apache2 restart
 
 RUN groupadd -g ${WEB_USER_GID} www-group \
 && usermod -g ${WEB_USER_GID} www-user \
 && usermod -u ${WEB_USER_UID} www-user \
-&& echo "www-user:${WEB_USER_PASSWORD}" | chpasswd \
+&& echo "www-user:${WEB_USER_PASSWORD}" | chpasswd
 
 EXPOSE 80
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
