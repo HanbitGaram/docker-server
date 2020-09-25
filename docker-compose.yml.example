@@ -22,6 +22,9 @@ services:
     mariadb:
         build:
             context: "./configure/mariadb"
+            args:
+                MYSQL_UID: ${MYSQL_UID}
+                MYSQL_GID: ${MYSQL_GID}
         env_file:
             - "./env.docker"
         ports:
