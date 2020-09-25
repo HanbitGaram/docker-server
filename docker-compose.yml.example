@@ -25,5 +25,5 @@ services:
             - "MYSQL_DATABASE=db-user"
             - "MYSQL_USER=db-user"
             - "MYSQL_PASSWORD=db-password"
-            volumes:
-                - "./sources/mariadb:/var/lib/mysql:rw"
+        volumes:
+            - "./sources/mariadb:/var/lib/mysql:rw"
