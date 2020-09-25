@@ -10,20 +10,19 @@ RUN apt-get -y update \
 && a2enmod rewrite \
 && a2enmod proxy \
 && apt-get -y install php7.4-cli \
-&& php7.4-xml \
-&& php7.4-zip \
-&& php7.4-curl \
-&& php7.4-gd \
-&& php7.4-geoip \
-&& php7.4-ftp \
-&& php7.4-iconv \
-&& php7.4-ftp \
-&& php7.4-gettext \
-&& php7.4-intl \
-&& php7.4-mysqli \
-&& php7.4-mysqlnd \
-&& php7.4-phar \
-&& php7.4-tokenizer \
+                       php7.4-zip \
+                       php7.4-curl \
+                       php7.4-gd \
+                       php7.4-geoip \
+                       php7.4-ftp \
+                       php7.4-iconv \
+                       php7.4-ftp \
+                       php7.4-gettext \
+                       php7.4-intl \
+                       php7.4-mysqli \
+                       php7.4-mysqlnd \
+                       php7.4-phar \
+                       php7.4-tokenizer \
 && apt-get -y install libapache2-mod-php7.4 \
 && adduser --disabled-password --gecos '' www-user \
 && apt-get install -y tzdata \
