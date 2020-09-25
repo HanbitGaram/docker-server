@@ -31,9 +31,9 @@ RUN mkdir /Application \
 && dpkg-reconfigure --frontend noninteractive tzdata \
 && service apache2 restart
 
-RUN groupadd -g ${WEB_USER_GID} www-group
-
-RUN usermod -g ${WEB_USER_GID} www-user \
+RUN groupadd www-group && \
+usermod -g ${WEB_USER_GID} www-user \
+groupmod -g ${WEB_USER_GID} www-group \
 && usermod -u ${WEB_USER_UID} www-user \
 && echo "www-user:${WEB_USER_PASSWORD}" | chpasswd
 
