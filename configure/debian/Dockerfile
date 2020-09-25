@@ -10,8 +10,6 @@ RUN apt-get -y update \
 && a2enmod rewrite \
 && a2enmod proxy \
 && apt-get -y install php7.4-cli \
-&& php7.4-common \
-&& php7.4-xsl \
 && php7.4-xml \
 && php7.4-zip \
 && php7.4-curl \
