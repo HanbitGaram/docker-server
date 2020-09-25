@@ -1,12 +1,13 @@
 version: "3.8"
 services:
     debian:
-        build: "./configure/debian"
+        build:
+            context: "./configure/debian"
+            args:
+                WEB_USER_GID: 1000
+                WEB_USER_UID: 1000
+                WEB_USER_PASSWORD: www-user
         restart: "always"
-        args:
-            WEB_USER_GID: 1000
-            WEB_USER_UID: 1000
-            WEB_USER_PASSWORD: www-user
         ports:
             - "80:80"
         environment:
