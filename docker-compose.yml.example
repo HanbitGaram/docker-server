@@ -4,31 +4,33 @@ services:
         build:
             context: "./configure/debian"
             args:
-                WEB_USER_GID: 1000
-                WEB_USER_UID: 1000
-                WEB_USER_PASSWORD: www-user
+                WEB_USER_GID: ${WEB_USER_GID}
+                WEB_USER_UID: ${WEB_USER_UID}
+                WEB_USER_PASSWORD: ${WEB_USER_PASSWORD}
+        env_file:
+            - "./env.docker"
         restart: "always"
         ports:
             - "80:80"
         environment:
             - "TZ=Asia/Seoul"
             - "DEBIAN_FRONTEND=noninteractive"
-            - "WEB_USER_GID=1000"
-            - "WEB_USER_UID=1000"
-            - "WEB_USER_PASSWORD=www-user"
         volumes:
             - "./sources/web:/Application:rw"
         depends_on:
             - "mariadb"
     mariadb:
-        image: "mariadb:latest"
+        build:
+            context: "./configure/mariadb"
+        env_file:
+            - "./env.docker"
         ports:
             - "3306:3306"
         restart: "always"
         environment:
             - "MYSQL_ROOT_PASSWORD=mariaDbRootPassword"
-            - "MYSQL_DATABASE=db-user"
-            - "MYSQL_USER=db-user"
-            - "MYSQL_PASSWORD=db-password"
+            - "MYSQL_DATABASE=dbuser"
+            - "MYSQL_USER=dbuser"
+            - "MYSQL_PASSWORD=dbpassword"
         volumes:
             - "./sources/mariadb:/var/lib/mysql:rw"
