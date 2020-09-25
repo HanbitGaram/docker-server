@@ -5,10 +5,11 @@ RUN apt-get -y update \
 && apt -y update \
 && apt-get -y upgrade \
 && apt -y upgrade \
-&& mkdir /Application \
 && apt-get -y install apache2 \
 && a2enmod rewrite \
-&& a2enmod proxy \
+&& a2enmod proxy
+
+RUN mkdir /Application \
 && apt-get -y install php7.4-cli \
                        php7.4-zip \
                        php7.4-curl \
