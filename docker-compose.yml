@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+    debian:
+        build: "./configure/debian"
+        restart: "always"
+        ports:
+            - "80:8080"
+        environment:
+            - "WEB_USER_GID=1000"
+            - "WEB_USER_UID=1000"
+            - "WEB_USER_PASSWORD=www-user"
+            - "TZ=Asia/Seoul"
+            - "DEBIAN_FRONTEND=noninteractive"
+        depends_on:
+            - "mariadb"
+    mysqli:
+        image: "mariadb:latest"
+        ports:
+            - "3306:3306"
+        restart: "always"
+        environment:
+            - "MYSQL_ROOT_PASSWORD=mariaDbRootPassword"
+            - "MYSQL_DATABASE=db-user"
+            - "MYSQL_USER=db-user"
+            - "MYSQL_PASSWORD=db-password"
