@@ -1,6 +1,10 @@
 FROM debian:bullseye-slim
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Seoul
+ENV WEB_USER_GID $WEB_USER_GID
+ENV WEB_USER_UID $WEB_USER_UID
+ENV WEB_USER_PASSWORD $WEB_USER_PASSWORD
+
 RUN apt-get -y update \
 && apt -y update \
 && apt-get -y upgrade \
