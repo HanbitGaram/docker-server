@@ -25,14 +25,15 @@ RUN apt-get -y update \
 && php7.4-phar \
 && php7.4-tokenizer \
 && apt-get -y install libapache2-mod-php7.4 \
-&& groupadd -g ${WEB_USER_GID} www-group \
 && adduser --disabled-password --gecos '' www-user \
-&& usermod -g ${WEB_USER_GID} www-user \
-&& usermod -u ${WEB_USER_UID} www-user \
-&& echo "www-user:${WEB_USER_PASSWORD}" | chpasswd \
 && apt-get install -y tzdata \
 && ln -fs /usr/share/zoneinfo/Asia/Seoul /etc/localtime \
 && dpkg-reconfigure --frontend noninteractive tzdata
+
+RUN groupadd -g ${WEB_USER_GID} www-group \
+&& usermod -g ${WEB_USER_GID} www-user \
+&& usermod -u ${WEB_USER_UID} www-user \
+&& echo "www-user:${WEB_USER_PASSWORD}" | chpasswd \
 
 EXPOSE 80
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]

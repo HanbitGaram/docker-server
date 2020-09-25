@@ -11,6 +11,8 @@ services:
             - "WEB_USER_PASSWORD=www-user"
             - "TZ=Asia/Seoul"
             - "DEBIAN_FRONTEND=noninteractive"
+        volumes:
+            - "./sources/web:/Application:rw"
         depends_on:
             - "mariadb"
     mariadb:
@@ -23,3 +25,5 @@ services:
             - "MYSQL_DATABASE=db-user"
             - "MYSQL_USER=db-user"
             - "MYSQL_PASSWORD=db-password"
+            volumes:
+                - "./sources/mariadb:/var/lib/mysql:rw"
