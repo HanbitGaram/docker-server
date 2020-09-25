@@ -3,12 +3,13 @@ services:
     debian:
         build: "./configure/debian"
         restart: "always"
+        args:
+            WEB_USER_GID: 1000
+            WEB_USER_UID: 1000
+            WEB_USER_PASSWORD: www-user
         ports:
             - "80:8080"
         environment:
-            - "WEB_USER_GID=1000"
-            - "WEB_USER_UID=1000"
-            - "WEB_USER_PASSWORD=www-user"
             - "TZ=Asia/Seoul"
             - "DEBIAN_FRONTEND=noninteractive"
         volumes:
