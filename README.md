@@ -24,6 +24,7 @@ cp ./samples/docker-compose.yml ./docker-compose.yml
 
 # 아파치쪽 작업
 cp ./samples/apache/apache2.conf ./settings/apache/apache2.conf
+cp ./samples/apache/ports.conf ./settings/apache/ports.conf
 cp ./samples/apache/security.conf ./settings/apache/conf-enabled/security.conf
 cp ./samples/apache/000-default.conf ./settings/vhosts/000-default.conf
 cp ./samples/apache/index.html ./sources/default/index.html
