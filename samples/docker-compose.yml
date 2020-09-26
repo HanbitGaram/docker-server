@@ -7,10 +7,10 @@ services:
                 WEB_USER_GID: ${WEB_USER_GID}
                 WEB_USER_UID: ${WEB_USER_UID}
                 WEB_USER_PASSWORD: ${WEB_USER_PASSWORD}
-        env_file: "./configure/debian/debian.env"
         restart: "always"
         ports:
             - "80:80"
+            - "443:443"
         environment:
             - "TZ=Asia/Seoul"
             - "DEBIAN_FRONTEND=noninteractive"
@@ -24,14 +24,14 @@ services:
             args:
                 MYSQL_UID: ${MYSQL_UID}
                 MYSQL_GID: ${MYSQL_GID}
-        env_file: "./configure/debian/mariadb.env"
+        user: "${MYSQL_UID}:${MYSQL_GID}"
+        restart: "always"
         ports:
             - "3306:3306"
-        restart: "always"
         environment:
-            - "MYSQL_ROOT_PASSWORD=mariaDbRootPassword"
-            - "MYSQL_DATABASE=dbuser"
-            - "MYSQL_USER=dbuser"
-            - "MYSQL_PASSWORD=dbpassword"
+            - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+            - "MYSQL_DATABASE=${MYSQL_DATABASE}"
+            - "MYSQL_USER=${MYSQL_USER}"
+            - "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
         volumes:
             - "./sources/mariadb:/var/lib/mysql:rw"
