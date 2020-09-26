@@ -7,8 +7,7 @@ services:
                 WEB_USER_GID: ${WEB_USER_GID}
                 WEB_USER_UID: ${WEB_USER_UID}
                 WEB_USER_PASSWORD: ${WEB_USER_PASSWORD}
-        env_file:
-            - "./env.docker"
+        env_file: "./configure/debian/debian.env"
         restart: "always"
         ports:
             - "80:80"
@@ -25,8 +24,7 @@ services:
             args:
                 MYSQL_UID: ${MYSQL_UID}
                 MYSQL_GID: ${MYSQL_GID}
-        env_file:
-            - "./env.docker"
+        env_file: "./configure/debian/mariadb.env"
         ports:
             - "3306:3306"
         restart: "always"
