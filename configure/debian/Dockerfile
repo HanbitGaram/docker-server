@@ -44,16 +44,5 @@ RUN groupadd -g ${WEB_USER_GID} www-group \
 && a2enconf security \
 && service apache2 restart
 
-# folder copy
-COPY ./settings/vhosts/ /etc/apache2/sites-enabled/
-COPY ./sources/default/ /var/www/html/
-
-# file copy
-COPY ./settings/apache/apache2.conf /etc/apache2/apache2.conf
-COPY ./settings/apache/ports.conf /etc/apache2/ports.conf
-COPY ./settings/apache/conf-enabled/security.conf /etc/apache2/conf-enabled/security.conf
-
-COPY ./settings/php/php.ini /etc/php/7.4/apache2/php.ini
-
 EXPOSE 80 443
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
