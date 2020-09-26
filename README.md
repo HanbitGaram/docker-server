@@ -42,3 +42,4 @@ cp ./samples/php/php.ini ./settings/php/php.ini
 3. sources - 작업하면 되는 폴더
     1. mariadb - mariadb 데이터베이스가 저장되는 공간
     2. web - 웹 파일이 저장되는 공간
+    3. default - 기본 경로 (도메인 연결 안 되었을때 표시 될 곳)
