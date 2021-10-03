@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+    mariadb:
+        build:
+            context: "./configure/mariadb"
+            args:
+                MYSQL_UID: ${MYSQL_UID}
+                MYSQL_GID: ${MYSQL_GID}
+        user: "${MYSQL_UID}:${MYSQL_GID}"
+        restart: "always"
+        ports:
+            - "3306:3306"
+        environment:
+            - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+            - "MYSQL_DATABASE=${MYSQL_DATABASE}"
+            - "MYSQL_USER=${MYSQL_USER}"
+            - "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
+        volumes:
+            - "./mariadb:/var/lib/mysql:rw"
